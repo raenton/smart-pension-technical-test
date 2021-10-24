@@ -38,8 +38,7 @@ exports.totalPageViews = function(log, order) {
   const lines = log.split('\n');
 
   lines.forEach(line => {
-    const parts = line.split(' ');
-    const page = parts[0];
+    const page = line.split(' ')[0];
 
     const pageIndex = pages.findIndex(p => p.name === page);
     if (pageIndex === -1) {
