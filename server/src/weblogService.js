@@ -38,6 +38,10 @@ exports.totalPageViews = function(log, order) {
   const lines = log.split('\n');
 
   lines.forEach(line => {
+    // avoid empty new lines
+    if (line.length === 0) {
+      return;
+    }
     const page = line.split(' ')[0];
 
     const pageIndex = pages.findIndex(p => p.name === page);
@@ -64,6 +68,10 @@ exports.totalUniquePageViews = function(log, order) {
   const ipTracker = [];
   const lines = log.split('\n');
   lines.forEach(line => {
+    // avoid empty new lines
+    if (line.length === 0) {
+      return;
+    }
     const [page, ip] = line.split(' ');
 
     const pageIndex = pages.findIndex(p => p.name === page);
