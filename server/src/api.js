@@ -7,12 +7,13 @@ const router = express.Router();
 
 router.post('/weblog', (req, res, next) => {
   try {
-    const { log } = req.files;
-    const { unique, order } = req.query;
-
     if (!req.files) {
       throw new UserInputError("No files were uploaded.");
     }
+
+    const { log } = req.files;
+    const { unique, order } = req.query;
+    
 
     fs.readFile(log.tempFilePath, 'utf-8', function (err, data) {
       if (err) {
