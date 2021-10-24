@@ -20,7 +20,7 @@ router.post('/weblog', (req, res, next) => {
         throw err;
       }
 
-      const result = unique
+      const result = unique === 'true'
       ? weblogService.totalUniquePageViews(data, order)
       : weblogService.totalPageViews(data, order);
       res.status(200).json(result);
