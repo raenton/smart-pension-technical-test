@@ -1,3 +1,4 @@
+const { UserInputError } = require('./errors');
 const SORT_ORDERS = ['asc', 'desc'];
 
 function isValidSortOrder(order) {
@@ -31,7 +32,7 @@ function sortPagesByViewCount(pages, order = 'desc') {
 
 exports.totalPageViews = function(log, order) {
   if (!isValidSortOrder(order)) {
-    throw new Error('Invalid sort order detected. Please specify either `asc`, `desc`, or undefined sort order.');
+    throw new UserInputError('Invalid sort order detected. Please specify either `asc`, `desc`, or undefined sort order.');
   }
 
   const pages = [];
@@ -61,7 +62,7 @@ exports.totalPageViews = function(log, order) {
 
 exports.totalUniquePageViews = function(log, order) {
   if (!isValidSortOrder(order)) {
-    throw new Error('Invalid sort order detected. Please specify either `asc`, `desc`, or undefined sort order.');
+    throw new UserInputError('Invalid sort order detected. Please specify either `asc`, `desc`, or undefined sort order.');
   }
 
   const pages = [];

@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const api = require('./src/api');
+const errors = require('./src/errors');
 // Move this into env variable later
 const PORT = 8001;
 const app = express();
@@ -23,10 +24,20 @@ app.use('/api', api);
 
 // basic error handling
 app.use(function (err, req, res, next) {
-  res.status(err.status).json({
-    status: err.status || 500,
+  let status = 500;
+  // Can add many cases here to get the right status for custom errors.
+  // The reason for doing this here is so that the errors thrown by services (weblogService etc)
+  // can remain semi-ignorant of HTTP concerns.
+  switch(typeof err) {
+    case errors.UserInputError:
+      status = 400;
+    break;
+  }
+  
+  res.status(status).json({
+    status: status,
     message: err.message || 'Something went wrong.'
   });
-})
+});
 
 app.listen(PORT, () => console.log(`Listening on: http://localhost:${PORT}`));
