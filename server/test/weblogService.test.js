@@ -107,11 +107,7 @@ describe('weblogService', function() {
   });
 
   describe('#totalUniquePageViews', function() {
-    it('returns a list of unique pages', function() {
-      assert(false);
-    });
-
-    it('returns unique view counts for pages', function() {
+    it('returns an unsorted array of unique pages with unique view counts', function() {
       assert(false);
     });
 
@@ -122,5 +118,29 @@ describe('weblogService', function() {
     it('returns pages sorted in descending order by unique view count', function() {
       assert(false);
     });
+
+    it('Throws an error when invalid sort order params are provided', function() {
+      assert.throws(() => {
+        weblogService.totalPageViews('', '1234456789');
+      }, {
+        name: 'Error',
+        message: 'Invalid sort order detected. Please specify either `asc`, `desc`, or undefined sort order.'
+      });
+
+      assert.throws(() => {
+        weblogService.totalPageViews('', 'ASC'); // not 'asc'
+      }, {
+        name: 'Error',
+        message: 'Invalid sort order detected. Please specify either `asc`, `desc`, or undefined sort order.'
+      });
+
+      assert.throws(() => {
+        weblogService.totalPageViews('', 'DESC'); // not 'desc'
+      }, {
+        name: 'Error',
+        message: 'Invalid sort order detected. Please specify either `asc`, `desc`, or undefined sort order.'
+      });
+    });
   });
+
 });
