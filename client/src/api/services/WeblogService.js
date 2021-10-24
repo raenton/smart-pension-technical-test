@@ -1,11 +1,14 @@
-function WeblogService(client, endpoints) {
+function WeblogService(client) {
 
-  async function parseWeblog() {
-    
+  async function submitWeblog(formData) {
+    const response = await client.post("/weblog", formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    return response.data;
   }
 
   return {
-    parseWeblog
+    submitWeblog
   };
 }
 
