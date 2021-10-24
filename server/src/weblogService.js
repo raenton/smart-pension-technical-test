@@ -55,6 +55,37 @@ exports.totalPageViews = function(log, order) {
   return { pages, order };
 };
 
-exports.totalUniquePageViews = function(log, order = 'desc') {
-  
+exports.totalUniquePageViews = function(log, order) {
+  if (!isValidSortOrder(order)) {
+    throw new Error('Invalid sort order detected. Please specify either `asc`, `desc`, or undefined sort order.');
+  }
+
+  const pages = [];
+  const ipTracker = [];
+  const lines = log.split('\n');
+  lines.forEach(line => {
+    const [page, ip] = line.split(' ');
+
+    const pageIndex = pages.findIndex(p => p.name === page);
+    if (pageIndex === -1) {
+      // page has not been seen yet
+      pages.push({ name: page, views: 1 });
+      ipTracker.push({ name: page, ips: [ip] });
+    } else {
+      // page has been seen
+      const ipTrackedPageIndex = ipTracker.findIndex(p => p.name === page)
+      const ipTrackedPage = ipTracker[ipTrackedPageIndex];
+      if (ipTrackedPage.ips.indexOf(ip) === -1) {
+        // ip has not been seen, unique visit.
+        pages[pageIndex].views++;
+        ipTrackedPage.ips.push(ip);
+      }
+    }
+  });
+
+  if (order !== undefined) {
+    sortPagesByViewCount(pages, order);
+  }
+
+  return { pages, order };
 };
