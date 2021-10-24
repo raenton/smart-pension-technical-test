@@ -4,6 +4,15 @@ const weblogService = require('../src/weblogService');
 
 describe('weblogService', function() {
   describe('#totalPageViews', function() {
+    it('returns order in output object', function() {
+      const result1 = weblogService.totalPageViews('', 'asc');
+      const result2 = weblogService.totalPageViews('', 'desc');
+      const result3 = weblogService.totalPageViews('');
+      assert.equal(result1.order, 'asc');
+      assert.equal(result2.order, 'desc');
+      assert.equal(result3.order, undefined);
+    });
+
     it('returns an unsorted array of unique pages with view counts', function() {
       const testData = dedent
       `/home 316.433.849.805
