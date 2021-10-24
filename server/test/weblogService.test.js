@@ -139,21 +139,21 @@ describe('weblogService', function() {
 
     it('Throws an error when invalid sort order params are provided', function() {
       assert.throws(() => {
-        weblogService.totalPageViews('', '1234456789');
+        weblogService.totalUniquePageViews('', '1234456789');
       }, {
         name: 'Error',
         message: 'Invalid sort order detected. Please specify either `asc`, `desc`, or undefined sort order.'
       });
 
       assert.throws(() => {
-        weblogService.totalPageViews('', 'ASC'); // not 'asc'
+        weblogService.totalUniquePageViews('', 'ASC'); // not 'asc'
       }, {
         name: 'Error',
         message: 'Invalid sort order detected. Please specify either `asc`, `desc`, or undefined sort order.'
       });
 
       assert.throws(() => {
-        weblogService.totalPageViews('', 'DESC'); // not 'desc'
+        weblogService.totalUniquePageViews('', 'DESC'); // not 'desc'
       }, {
         name: 'Error',
         message: 'Invalid sort order detected. Please specify either `asc`, `desc`, or undefined sort order.'
