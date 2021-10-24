@@ -116,6 +116,15 @@ describe('weblogService', function() {
   });
 
   describe('#totalUniquePageViews', function() {
+    it('returns order in output object', function() {
+      const result1 = weblogService.totalUniquePageViews('', 'asc');
+      const result2 = weblogService.totalUniquePageViews('', 'desc');
+      const result3 = weblogService.totalUniquePageViews('');
+      assert.equal(result1.order, 'asc');
+      assert.equal(result2.order, 'desc');
+      assert.equal(result3.order, undefined);
+    });
+
     it('returns an unsorted array of unique pages with unique view counts', function() {
       assert(false);
     });
