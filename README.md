@@ -10,7 +10,8 @@ This is a technical test for Smart Pension. Please be aware that I chose to focu
 
 #### Server
 
-The server code lives in /server. Dependencies should be installed with npm. `npm install`. You can then run `npm dev` which will run the app and indicate to it that it is in dev mode, which is necessary for CORs to be enabled so that the front end client can interact with it.
+The server code lives in /server. Dependencies should be installed with npm, by `npm install`. You can then run `npm dev` which will run the app and indicate to it that it is in dev mode, which is necessary for CORs to be enabled so that the front end client can interact with it.
+
 #### Front end client
 
 The front end client lives in /client. It was bootstrapped using Create React App and therefore uses yarn as the default package manager. To install dependencies, please run
