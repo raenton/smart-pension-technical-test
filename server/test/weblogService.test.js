@@ -81,7 +81,7 @@ describe('weblogService', function() {
       ]);
     });
 
-    it('Throws an error when an invalid sort order params are provided', function() {
+    it('Throws an error when invalid sort order params are provided', function() {
       assert.throws(() => {
         weblogService.totalPageViews('', '1234456789');
       }, {
