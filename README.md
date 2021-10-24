@@ -1,0 +1,1 @@
+- NodeJS 14.8.0 or higher required
