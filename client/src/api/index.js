@@ -1,8 +1,7 @@
 import client from './client';
-import endpoints from './endpoints';
 import WeblogService from './services/WeblogService';
 
-const Api = (httpClient, endpointCreators) => {
+const Api = (httpClient) => {
   /**
    * redux has problems with Error objects so I am catching everything here
    * and mapping it to a format that won't make redux complain
@@ -32,8 +31,8 @@ const Api = (httpClient, endpointCreators) => {
   };
 
   return {
-    weblogService: WeblogService(sanitisedClient, endpointCreators.weblog)
+    weblogService: WeblogService(sanitisedClient)
   };
 };
 
-export default Api(client, endpoints, window.localStorage);
+export default Api(client);
