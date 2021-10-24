@@ -21,4 +21,12 @@ app.use(fileUpload({
 
 app.use('/api', api);
 
+// basic error handling
+app.use(function (err, req, res, next) {
+  res.status(err.status).json({
+    status: err.status || 500,
+    message: err.message || 'Something went wrong.'
+  });
+})
+
 app.listen(PORT, () => console.log(`Listening on: http://localhost:${PORT}`));
