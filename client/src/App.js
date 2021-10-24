@@ -1,8 +1,8 @@
 import './App.css';
-import axios from 'axios';
+import client from './api/client';
 
 async function test() {
-  const resp = await axios.get('/api');
+  const resp = await client.get('/');
   console.log(resp);
 }
 
