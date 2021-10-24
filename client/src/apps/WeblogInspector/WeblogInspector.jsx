@@ -22,8 +22,8 @@ function WeblogInspector(props) {
   const logReportLoaded = logReport.pages && logReport.pages.length > 0;
   return (
     <>
+      <h2>Upload a weblog for processing</h2>
       <form onSubmit={submitWeblog}>
-        <FileUploader onFileSelect={(file) => setSelectedFile(file)} />
         <label>
           Unique visits?
           <Select value={unique} onChange={(e) => setUnique(e.target.value)}>
@@ -38,6 +38,7 @@ function WeblogInspector(props) {
             <option value="asc">ascending</option>
           </Select>
         </label>
+        <FileUploader onFileSelect={(file) => setSelectedFile(file)} />
         <button type="button" onClick={submitWeblog}>Submit</button>
       </form>
 
