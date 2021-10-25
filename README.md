@@ -18,3 +18,7 @@ The front end client lives in /client. It was bootstrapped using Create React Ap
 `yarn install`. You can then run `yarn start` to run it. 
 
 The API_URL env variable can be used to point the front end to the server's proper URL, if it differs from the localhost:8001 default.
+
+#### Running tests
+
+Tests live in /server/test. Please run `npm test` from /server.
